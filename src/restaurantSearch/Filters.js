@@ -13,9 +13,15 @@ const Filters = ({ onListFilter }) => {
   }
 
   return (
-    <label>
+    <label htmlFor="restaurantFilter">
       Enter text to filter the results:
-      <input type="text" value={filterValue} onChange={handleChange} />
+      <input
+        id="restaurantFilter"
+        className="filters__input"
+        type="text"
+        value={filterValue}
+        onChange={handleChange}
+      />
     </label>
   );
 };

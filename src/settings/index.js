@@ -1,5 +1,6 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
+import "./settings.css";
 
 const themeMap = {
   light: {
@@ -11,18 +12,33 @@ const themeMap = {
 };
 
 const Settings = ({ onThemeSelect }) => {
+  const [selectedTheme, selectTheme] = useState("light");
   function handleClick(e) {
-    onThemeSelect(themeMap[e.target.value].backgroundColor);
+    const theme = e.target.value;
+    onThemeSelect(themeMap[theme].backgroundColor);
+    selectTheme(theme);
   }
 
   const colors = ["light", "dark"];
   return (
     <Fragment>
-      {colors.map((color) => (
-        <button key={color} onClick={handleClick} value={color}>
-          {color} theme
-        </button>
-      ))}
+      {colors.map((color) => {
+        const isSelected = selectedTheme === color;
+        return (
+          <button
+            className={`settings__button ${
+              isSelected && "settings__button--selected"
+            }`}
+            aria-pressed={isSelected}
+            tabIndex="0"
+            key={color}
+            onClick={handleClick}
+            value={color}
+          >
+            {color} theme
+          </button>
+        );
+      })}
     </Fragment>
   );
 };

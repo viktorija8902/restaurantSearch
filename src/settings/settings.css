@@ -1,0 +1,8 @@
+.settings__button {
+  cursor: pointer;
+  margin-right: 1em;
+  font-size: 1em;
+}
+.settings__button--selected {
+  background-color: rgb(165, 199, 231);
+}

@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { searchForRestaurants } from "./actions";
+import { ThemeContext } from "../App";
 
 const SearchBox = ({ onSearchClick }) => {
   const [city, setCity] = useState("");
@@ -19,11 +20,28 @@ const SearchBox = ({ onSearchClick }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>
+      <label htmlFor="city" className="search-box__label">
         City:
-        <input type="text" value={city} onChange={handleCityChange} />
+        <input
+          id="city"
+          className="search-box__input"
+          type="text"
+          value={city}
+          onChange={handleCityChange}
+        />
       </label>
-      <input type="submit" value="Search" />
+      <ThemeContext.Consumer>
+        {(theme) => {
+          return (
+            <input
+              style={{ backgroundColor: theme }}
+              className="search-box__submit"
+              type="submit"
+              value="Search"
+            />
+          );
+        }}
+      </ThemeContext.Consumer>
     </form>
   );
 };
