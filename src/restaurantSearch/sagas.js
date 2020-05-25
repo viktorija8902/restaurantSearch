@@ -1,14 +1,20 @@
 import { call, put, takeLatest } from "redux-saga/effects";
 import { getRestaurants } from "./restaurantsApi";
+import { addSearchData } from "./utils";
 
 function* fetchRestaurants({ type, params }) {
   try {
     yield put({ type: "LOADING", loading: true });
     const response = yield call(getRestaurants, params.city);
+    const restaurants = response.restaurants;
+    let restaurantsWithSearchData;
+    if (restaurants) {
+      restaurantsWithSearchData = addSearchData(restaurants);
+    }
     yield put({
       type: "RESTAURANTS_RETURNED",
-      restaurants: response.restaurants,
-      message: response.restaurants.length ? "" : "No restaurants found.",
+      restaurants: restaurantsWithSearchData || [],
+      message: restaurants.length ? "" : "No restaurants found.",
     });
     yield put({ type: "LOADING", loading: false });
   } catch (e) {

@@ -4,3 +4,10 @@ export function searchForRestaurants(params) {
     params,
   };
 }
+
+export function filterRestaurants(text) {
+  return {
+    type: "FILTER_RESTAURANTS", //TODO add to constants
+    text,
+  };
+}
