@@ -13,7 +13,8 @@ function App() {
   function handleThemeChange(theme) {
     setTheme(theme);
   }
-
+  //TODO move this to store or to context
+  const isDesktop = window.innerWidth >= 500;
   return (
     <ThemeContext.Provider value={theme}>
       <div className="page" style={{ backgroundColor: theme }}>
@@ -21,7 +22,7 @@ function App() {
           <Switch>
             <Route path="/">
               <Settings onThemeSelect={handleThemeChange} />
-              <RestaurantSearchPage />
+              <RestaurantSearchPage isDesktop={isDesktop} />
             </Route>
           </Switch>
         </Router>

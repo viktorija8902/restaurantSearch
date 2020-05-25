@@ -13,12 +13,11 @@ const RestaurantSearchPage = ({
   restaurants,
   filteredRestaurants,
   message,
+  isDesktop,
 }) => {
   const mainHeader = <h1>Find the best restaurants in your area!</h1>;
   const subHeader = <h2>Search by city</h2>;
-  const restaurantsList = filteredRestaurants.map((item) => (
-    <ListItem key={item.id} {...item} />
-  ));
+
   if (loading) {
     return (
       <Fragment>
@@ -29,7 +28,11 @@ const RestaurantSearchPage = ({
       </Fragment>
     );
   }
+
   const showResultsHeader = !!restaurants.length || message;
+  const restaurantsList = filteredRestaurants.map((item) => (
+    <ListItem isDesktop={isDesktop} key={item.id} item={item} />
+  ));
   return (
     <Fragment>
       {mainHeader}
@@ -48,6 +51,7 @@ RestaurantSearchPage.propTypes = {
   filteredRestaurants: PropTypes.array.isRequired,
   loading: PropTypes.bool.isRequired,
   message: PropTypes.string.isRequired,
+  isDesktop: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => {

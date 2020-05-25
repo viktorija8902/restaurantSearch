@@ -12,3 +12,6 @@ export const addSearchData = (items) => {
     };
   });
 };
+
+export const generateListFromValue = (length) =>
+  Array.from({ length }, (v, k) => k + 1);
