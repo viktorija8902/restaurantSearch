@@ -38,6 +38,7 @@ const SearchBox = ({ onSearchClick }) => {
               className="search-box__submit"
               type="submit"
               value="Search"
+              disabled={!city}
             />
           );
         }}
