@@ -13,7 +13,8 @@ code {
 }
 
 .page {
-  height: 100vh;
+  height: 100%;
+  min-height: 100vh;
   color: black;
   font-size: 1em;
   padding: 1.5em;
@@ -30,6 +31,7 @@ input[type="submit"] {
 form {
   margin: 10px 0;
 }
+
 input {
   height: 1.8em;
   margin: 0 5px 0 10px;
