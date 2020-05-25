@@ -3,13 +3,16 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { searchForRestaurants } from "./actions";
-// import ListItem from "./ListItem";
+import ListItem from "./ListItem";
+import Loading from "./Loading";
 
-const RestaurantSearchPage = ({ restaurants, onSearchClick }) => {
-  const restaurantsList = restaurants.map((restaurant, index) => (
-    // <ListItem key={restaurant.id} {...restaurant} />
-    <div key={index}>Test </div>
+const RestaurantSearchPage = ({ loading, restaurants, onSearchClick }) => {
+  const restaurantsList = restaurants.map((item) => (
+    <ListItem key={item.id} {...item} />
   ));
+  if (loading) {
+    return <Loading />;
+  }
   return (
     <div>
       <button onClick={onSearchClick}>Search</button>
@@ -19,20 +22,15 @@ const RestaurantSearchPage = ({ restaurants, onSearchClick }) => {
 };
 
 RestaurantSearchPage.propTypes = {
-  restaurants: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      price: PropTypes.string.isRequired,
-      address: PropTypes.string.isRequired,
-    }).isRequired
-  ).isRequired,
+  restaurants: PropTypes.array.isRequired,
   onSearchClick: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => {
   return {
     restaurants: state.restaurantSearch.restaurants,
+    loading: state.restaurantSearch.loading,
   };
 };
 

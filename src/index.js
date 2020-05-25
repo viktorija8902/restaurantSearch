@@ -2,16 +2,22 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import * as serviceWorker from "./serviceWorker";
-import { createStore } from "redux";
+import createSagaMiddleware from "redux-saga";
+import { createStore, applyMiddleware, compose } from "redux";
 import reducers from "./reducers";
+import restaurantSearchSagas from "./restaurantSearch/sagas";
 
 import "./index.css";
 import App from "./App";
 
+const sagaMiddleware = createSagaMiddleware();
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
   reducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  composeEnhancers(applyMiddleware(sagaMiddleware))
 );
+
+sagaMiddleware.run(restaurantSearchSagas);
 
 ReactDOM.render(
   <Provider store={store}>

@@ -1,10 +1,13 @@
 const initialState = {
   restaurants: [],
-  error: false, //TODO add different errors
+  error: false,
+  loading: false,
 };
 
 const restaurantSearch = (state = initialState, action) => {
   switch (action.type) {
+    case "LOADING":
+      return { ...state, loading: action.loading };
     case "RESTAURANTS_RETURNED":
       return { ...state, restaurants: action.restaurants };
     default:
