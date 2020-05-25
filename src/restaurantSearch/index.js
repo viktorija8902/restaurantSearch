@@ -1,48 +1,45 @@
-import React from "react";
+import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { searchForRestaurants } from "./actions";
 import ListItem from "./ListItem";
 import Loading from "./Loading";
+import SearchBox from "./SearchBox";
 
-const RestaurantSearchPage = ({ loading, restaurants, onSearchClick }) => {
+const RestaurantSearchPage = ({ loading, restaurants, message }) => {
   const restaurantsList = restaurants.map((item) => (
     <ListItem key={item.id} {...item} />
   ));
   if (loading) {
-    return <Loading />;
+    return (
+      <Fragment>
+        <SearchBox />
+        <Loading />
+      </Fragment>
+    );
   }
   return (
-    <div>
-      <button onClick={onSearchClick}>Search</button>
+    <Fragment>
+      <SearchBox />
+      <p>{message}</p>
       <div>{restaurantsList}</div>
-    </div>
+    </Fragment>
   );
 };
 
 RestaurantSearchPage.propTypes = {
   restaurants: PropTypes.array.isRequired,
-  onSearchClick: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired,
+  message: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => {
+  const search = state.restaurantSearch;
   return {
-    restaurants: state.restaurantSearch.restaurants,
-    loading: state.restaurantSearch.loading,
+    restaurants: search.restaurants,
+    loading: search.loading,
+    message: search.message,
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onSearchClick: (params) => {
-      dispatch(searchForRestaurants(params));
-    },
-  };
-};
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(RestaurantSearchPage);
+export default connect(mapStateToProps)(RestaurantSearchPage);

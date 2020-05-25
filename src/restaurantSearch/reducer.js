@@ -1,6 +1,7 @@
 const initialState = {
   restaurants: [],
   error: false,
+  message: "",
   loading: false,
 };
 
@@ -9,7 +10,8 @@ const restaurantSearch = (state = initialState, action) => {
     case "LOADING":
       return { ...state, loading: action.loading };
     case "RESTAURANTS_RETURNED":
-      return { ...state, restaurants: action.restaurants };
+      const { restaurants, message } = action;
+      return { ...state, restaurants, message, error: false };
     default:
       return state;
   }
