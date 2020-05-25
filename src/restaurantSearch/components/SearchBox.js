@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { searchForRestaurants } from "./actions";
-import { ThemeContext } from "../App";
+import { searchForRestaurants } from "../actions";
+import { ThemeContext } from "../../App";
 
 const SearchBox = ({ onSearchClick }) => {
   const [city, setCity] = useState("");

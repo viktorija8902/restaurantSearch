@@ -2,11 +2,11 @@ import React, { Fragment } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import ListItem from "./ListItem";
-import Loading from "./Loading";
-import SearchBox from "./SearchBox";
-import Filters from "./Filters";
-import "./restaurantSearch.css";
+import ListItem from "./components/ListItem";
+import Loading from "./components/Loading";
+import SearchBox from "./components/SearchBox";
+import Filters from "./components/Filters";
+import "./components/restaurantSearch.css";
 
 const RestaurantSearchPage = ({
   loading,

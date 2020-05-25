@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { generateListFromValue } from "./utils";
+import { generateListFromValue } from "../utils";
 
 const ListItem = ({ item, isDesktop }) => (
   <div className="list-item">

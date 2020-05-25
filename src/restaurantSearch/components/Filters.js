@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import { filterRestaurants } from "./actions";
+import { filterRestaurants } from "../actions";
 
 const Filters = ({ onListFilter }) => {
   const [filterValue, setFilterValue] = useState("");
