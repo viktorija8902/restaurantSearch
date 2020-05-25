@@ -8,6 +8,7 @@ const initialState = {
   loading: false,
 };
 
+//TODO split into several function
 const restaurantSearch = (state = initialState, action) => {
   switch (action.type) {
     case "LOADING":
@@ -31,6 +32,15 @@ const restaurantSearch = (state = initialState, action) => {
         filteredRestaurants = filterListByValue(state.restaurants, action.text);
       }
       return { ...state, filteredRestaurants };
+
+    case "GET_RESTAURANTS_FAILED":
+      return {
+        ...state,
+        restaurants: [],
+        filteredRestaurants: [],
+        message: action.message,
+        error: true,
+      };
     default:
       return state;
   }
