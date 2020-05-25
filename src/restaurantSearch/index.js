@@ -6,6 +6,7 @@ import ListItem from "./ListItem";
 import Loading from "./Loading";
 import SearchBox from "./SearchBox";
 import Filters from "./Filters";
+import "./restaurantSearch.css";
 
 const RestaurantSearchPage = ({
   loading,
@@ -13,21 +14,29 @@ const RestaurantSearchPage = ({
   filteredRestaurants,
   message,
 }) => {
+  const mainHeader = <h1>Find the best restaurants in your area!</h1>;
+  const subHeader = <h2>Search by city</h2>;
   const restaurantsList = filteredRestaurants.map((item) => (
     <ListItem key={item.id} {...item} />
   ));
   if (loading) {
     return (
       <Fragment>
+        {mainHeader}
+        {subHeader}
         <SearchBox />
         <Loading />
       </Fragment>
     );
   }
+  const showResultsHeader = !!restaurants.length || message;
   return (
     <Fragment>
+      {mainHeader}
+      {subHeader}
       <SearchBox />
       {!!restaurants.length && <Filters />}
+      {showResultsHeader && <h2>Restaurants found:</h2>}
       <p>{message}</p>
       <div>{restaurantsList}</div>
     </Fragment>

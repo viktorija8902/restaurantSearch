@@ -14,7 +14,7 @@ const Filters = ({ onListFilter }) => {
 
   return (
     <label>
-      Add text to filter:
+      Enter text to filter the results:
       <input type="text" value={filterValue} onChange={handleChange} />
     </label>
   );
