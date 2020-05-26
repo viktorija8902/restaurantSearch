@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
@@ -20,26 +20,27 @@ const SearchBox = ({ onSearchClick }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label htmlFor="city" className="search-box__label">
-        City:
-        <input
-          id="city"
-          className="search-box__input"
-          type="text"
-          value={city}
-          onChange={handleCityChange}
-        />
-      </label>
       <ThemeContext.Consumer>
         {(theme) => {
           return (
-            <input
-              style={{ backgroundColor: theme }}
-              className="search-box__submit"
-              type="submit"
-              value="Search"
-              disabled={!city}
-            />
+            <Fragment>
+              <label htmlFor="city" className="search-box__label">
+                City:
+                <input
+                  id="city"
+                  className={`search-box__input--${theme}`}
+                  type="text"
+                  value={city}
+                  onChange={handleCityChange}
+                />
+              </label>
+              <input
+                className={`search-box__submit--${theme}`}
+                type="submit"
+                value="Search"
+                disabled={!city}
+              />
+            </Fragment>
           );
         }}
       </ThemeContext.Consumer>

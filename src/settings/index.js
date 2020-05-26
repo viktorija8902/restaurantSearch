@@ -2,27 +2,18 @@ import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import "./settings.css";
 
-const themeMap = {
-  light: {
-    backgroundColor: "white",
-  },
-  dark: {
-    backgroundColor: "tan",
-  },
-};
-
 const Settings = ({ onThemeSelect }) => {
   const [selectedTheme, selectTheme] = useState("light");
   function handleClick(e) {
     const theme = e.target.value;
-    onThemeSelect(themeMap[theme].backgroundColor);
+    onThemeSelect(theme);
     selectTheme(theme);
   }
 
-  const colors = ["light", "dark"];
+  const themes = ["light", "dark"];
   return (
     <Fragment>
-      {colors.map((color) => {
+      {themes.map((color) => {
         const isSelected = selectedTheme === color;
         return (
           <button

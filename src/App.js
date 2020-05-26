@@ -17,7 +17,7 @@ function App() {
   const isDesktop = window.innerWidth >= 500;
   return (
     <ThemeContext.Provider value={theme}>
-      <div className="page" style={{ backgroundColor: theme }}>
+      <div className={`page page--${theme}`}>
         <Router>
           <Switch>
             <Route path="/">

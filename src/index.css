@@ -19,6 +19,12 @@ code {
   font-size: 1em;
   padding: 1.5em;
 }
+.page--light {
+  background-color: white;
+}
+.page--dark {
+  background-color: tan;
+}
 
 button,
 input[type="submit"] {

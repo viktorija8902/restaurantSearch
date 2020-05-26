@@ -14,3 +14,12 @@
   display: block;
   border-radius: 12px;
 }
+
+.search-box__input--light,
+.search-box__submit--light {
+  background-color: white;
+}
+.search-box__input--dark,
+.search-box__submit--dark {
+  background-color: tan;
+}
