@@ -15,6 +15,7 @@
   border-radius: 12px;
 }
 
+/* //TODO move to relevant file */
 .app__input--light,
 .search-box__submit--light {
   background-color: white;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 import "./App.css";
@@ -13,7 +13,7 @@ function App() {
   function handleThemeChange(theme) {
     setTheme(theme);
   }
-  //TODO move this to store or to context
+
   const isDesktop = window.innerWidth >= 500;
   return (
     <ThemeContext.Provider value={theme}>

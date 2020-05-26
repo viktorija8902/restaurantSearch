@@ -32,13 +32,7 @@ const ListItem = ({ item, isDesktop }) => (
 );
 
 ListItem.propTypes = {
-  item: PropTypes.objectOf(
-    PropTypes.shape({
-      name: PropTypes.string.isRequired,
-      price: PropTypes.string.isRequired,
-      address: PropTypes.string.isRequired,
-    }).isRequired
-  ).isRequired,
+  item: PropTypes.object.isRequired,
   isDesktop: PropTypes.bool.isRequired,
 };
 
