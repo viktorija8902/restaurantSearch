@@ -1,9 +1,10 @@
-import React, { Fragment, useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { searchForRestaurants } from "../actions";
 import { ThemeContext } from "../../App";
+import ThemedInput from "../../common/ThemedInput";
 
 const SearchBox = ({ onSearchClick }) => {
   const [city, setCity] = useState("");
@@ -20,27 +21,21 @@ const SearchBox = ({ onSearchClick }) => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <ThemedInput
+        id="city"
+        value={city}
+        label="City:"
+        onChange={handleCityChange}
+      />
       <ThemeContext.Consumer>
         {(theme) => {
           return (
-            <Fragment>
-              <label htmlFor="city" className="search-box__label">
-                City:
-                <input
-                  id="city"
-                  className={`search-box__input--${theme}`}
-                  type="text"
-                  value={city}
-                  onChange={handleCityChange}
-                />
-              </label>
-              <input
-                className={`search-box__submit--${theme}`}
-                type="submit"
-                value="Search"
-                disabled={!city}
-              />
-            </Fragment>
+            <input
+              className={`search-box__submit--${theme}`}
+              type="submit"
+              value="Search"
+              disabled={!city}
+            />
           );
         }}
       </ThemeContext.Consumer>

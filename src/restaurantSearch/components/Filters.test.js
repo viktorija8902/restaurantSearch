@@ -3,6 +3,7 @@ import { shallow } from "enzyme";
 import configureStore from "redux-mock-store";
 
 import Filters from "./Filters";
+import ThemedInput from "../../common/ThemedInput";
 
 describe("Filters test", () => {
   const mockStore = configureStore([]);
@@ -11,11 +12,11 @@ describe("Filters test", () => {
   const wrapper = shallow(<Filters store={store} />).dive();
 
   it("renders input field", () => {
-    expect(wrapper.find(".filters__input")).toHaveLength(1);
+    expect(wrapper.find(ThemedInput)).toHaveLength(1);
   });
 
   it("adding input dispatches correct action to the store and makes input appear", () => {
-    const inputField = wrapper.find(".filters__input");
+    const inputField = wrapper.find(ThemedInput);
     const text = "restaurant";
     inputField.simulate("change", { target: { value: text } });
 
@@ -23,6 +24,6 @@ describe("Filters test", () => {
     const expectedPayload = { type: "FILTER_RESTAURANTS", text };
     expect(actions).toEqual([expectedPayload]);
 
-    expect(wrapper.find(".filters__input").props().value).toEqual(text);
+    expect(wrapper.find(ThemedInput).props().value).toEqual(text);
   });
 });

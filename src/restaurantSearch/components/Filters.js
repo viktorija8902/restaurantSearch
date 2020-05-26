@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
 import { filterRestaurants } from "../actions";
+import ThemedInput from "../../common/ThemedInput";
 
 const Filters = ({ onListFilter }) => {
   const [filterValue, setFilterValue] = useState("");
@@ -13,16 +14,12 @@ const Filters = ({ onListFilter }) => {
   }
 
   return (
-    <label htmlFor="restaurantFilter">
-      Enter text to filter the results:
-      <input
-        id="restaurantFilter"
-        className="filters__input"
-        type="text"
-        value={filterValue}
-        onChange={handleChange}
-      />
-    </label>
+    <ThemedInput
+      id="restaurantFilter"
+      value={filterValue}
+      label="Enter text to filter the results:"
+      onChange={handleChange}
+    />
   );
 };
 
